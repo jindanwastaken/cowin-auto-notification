@@ -1,2 +1,2 @@
 # cowin-auto-notification
-Telegram bot with firebase function back end to notify when vaccination slots are available
+Telegram bot with with node-cron to be deployed on a vps
