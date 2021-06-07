@@ -17,7 +17,7 @@ bot.on("polling_error", (error) => {
 	console.error(error);
 });
 
-cron.schedule('*/15 * * * * *', () => {
+cron.schedule('*/15 * * * *', () => {
 	console.log('running a task every 15 minutes'); 
 	testFunct();
 });
