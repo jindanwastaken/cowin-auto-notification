@@ -17,7 +17,7 @@ bot.on("polling_error", (error) => {
 	console.error(error);
 });
 
-cron.schedule('*/15 * * * *', () => {
+cron.schedule('*/15 * * * * *', () => {
 	console.log('running a task every 15 minutes'); 
 	testFunct();
 });
@@ -35,6 +35,10 @@ const testFunct = async () => {
 	payload.forEach((msg) => {
 		promiseArray.push(bot.sendMessage(constants.CHAT_ID, msg));
 	});
+
+	if(promiseArray.length === 0) {
+		promiseArray.push(bot.sendMessage(constants.CHAT_ID, "No centres found!"));
+	}
 
 	try {
 		await Promise.all(promiseArray);
