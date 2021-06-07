@@ -37,7 +37,7 @@ exports.checkCowin = async () => {
 			}
 
 			payload.data.forEach((center) => {
-				let message = "";
+				let message = "#################";
 				message +=
 					center.name +
 					", " +
@@ -48,19 +48,23 @@ exports.checkCowin = async () => {
 					center.fee_type +
 					")\n\n";
 				message += "Next Session : \n";
-				message +=
-					center.sessions[0].date +
-					", " +
-					center.sessions[0].vaccine +
-					", " +
-					center.sessions[0].min_age_limit +
-					"+, capacity : " +
-					center.sessions[0].available_capacity +
-					"\n\n";
-				message += "Slots : \n";
-				center.sessions[0].slots.forEach((slot) => {
-					message += slot + "\n";
-				});
+				center.sessions.forEach(session => {
+					message +=
+						center.session.date +
+						", " +
+						center.session.vaccine +
+						", " +
+						center.session.min_age_limit +
+						"+, capacity : " +
+						center.session.available_capacity +
+						"\n\n";
+					message += "Slots : \n";
+					center.session.slots.forEach((slot) => {
+						message += slot + "\n";
+					});
+					message += "\n\n";
+				})
+				message += "#################";
 				finalPayload.push(message);
 			});
 		} catch (err) {
