@@ -37,6 +37,7 @@ exports.checkCowin = async () => {
 			}
 
 			payload.data.forEach((center) => {
+				console.log(center);
 				let message = "################# \n";
 				message +=
 					center.name +
@@ -126,6 +127,7 @@ checkDistrict = async (config) => {
 				address: center.address,
 				district: center.district_name,
 				fee_type: center.fee_type,
+				pincode: center.pincode,
 				sessions: centerSessionPayload,
 			});
 		}
