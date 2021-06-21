@@ -9,29 +9,32 @@ const token = process.env.TELEGRAM_BOT_TOKEN;
 
 const bot = new TelegramBot(token, {polling: true});
 
-bot.on("message", (msg) => {
+bot.on("message", async (msg) => {
 	console.log(msg);
+	await testFunct();
 });
 
 bot.on("polling_error", (error) => {
 	console.error(error);
 });
 
-cron.schedule('*/60 * * * *', () => {
-	console.log('running a task every 15 minutes'); 
-	testFunct();
+cron.schedule('*/60 * * * *', async () => {
+	console.log('running a task every 60 minutes'); 
+	await testFunct();
 });
 
 const testFunct = async () => {
 	let payload;
+	let promiseArray = [];
+
 	try {
 		payload = await utils.checkCowin();
 	} catch (err) {
+		promiseArray.push(bot.sendMessage(constants.CHAT_ID, "error occured"));
 		console.log("Error when getting messages");
 		console.error(err);
 	}
 
-	promiseArray = [];
 	payload.forEach((msg) => {
 		promiseArray.push(bot.sendMessage(constants.CHAT_ID, msg));
 	});

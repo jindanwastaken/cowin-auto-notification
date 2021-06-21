@@ -7,7 +7,7 @@ let districts = constants.DISTRICTS;
 exports.checkCowin = async () => {
 	let date = new Date();
 	let formattedDate =
-		date.getDate() + "-" + date.getMonth() + "-" + date.getFullYear();
+		date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
 
 	let finalPayload = [];
 
@@ -50,16 +50,16 @@ exports.checkCowin = async () => {
 				message += "Next Session : \n";
 				center.sessions.forEach(session => {
 					message +=
-						center.session.date +
+						session.date +
 						", " +
-						center.session.vaccine +
+						session.vaccine +
 						", " +
-						center.session.min_age_limit +
+						session.min_age_limit +
 						"+, capacity : " +
-						center.session.available_capacity +
+						session.available_capacity +
 						"\n\n";
 					message += "Slots : \n";
-					center.session.slots.forEach((slot) => {
+					session.slots.forEach((slot) => {
 						message += slot + "\n";
 					});
 					message += "\n\n";
