@@ -37,7 +37,7 @@ exports.checkCowin = async () => {
 			}
 
 			payload.data.forEach((center) => {
-				let message = "#################";
+				let message = "################# ";
 				message +=
 					center.name +
 					", " +
@@ -64,7 +64,7 @@ exports.checkCowin = async () => {
 					});
 					message += "\n\n";
 				})
-				message += "#################";
+				message += " #################";
 				finalPayload.push(message);
 			});
 		} catch (err) {
