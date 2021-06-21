@@ -37,13 +37,15 @@ exports.checkCowin = async () => {
 			}
 
 			payload.data.forEach((center) => {
-				let message = "################# ";
+				let message = "################# \n";
 				message +=
 					center.name +
 					", " +
 					center.address +
 					", " +
 					center.district +
+					" - " +
+					center.pincode +
 					" (" +
 					center.fee_type +
 					")\n\n";
